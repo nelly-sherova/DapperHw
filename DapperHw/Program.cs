@@ -18,7 +18,18 @@ namespace DapperHw
     }
     public static class Commands
     {
+        private const string connectionString = @"Data source=NILUFARSHEROVA; Initial catalog=DapperHw; Integrated Security = True";
         
+        //------Create------//
+
+        public static void Create(User user)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "INSERT INTO Users (Name, Age, City) VALUES(@Name, @Age, @City)";
+                db.Execute(sqlQuery, user);
+            }
+        }
     }
     class Program
     {
