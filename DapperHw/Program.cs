@@ -52,13 +52,23 @@ namespace DapperHw
         }
         
         //------Update------//
-        
+
         public static void Update(User user)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 var sqlQuery = "UPDATE Users SET Name = @Name, Age = @Age, City = @City WHERE Id = @Id";
                 db.Execute(sqlQuery, user);
+            }
+        }
+
+        //------Delete------//
+        public static void Delete(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "DELETE FROM Users WHERE Id = @id";
+                db.Execute(sqlQuery, new { id });
             }
         }
     }
