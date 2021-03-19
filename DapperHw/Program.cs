@@ -33,11 +33,21 @@ namespace DapperHw
 
         //------ReadAll------//
 
-         public static List<User> Read()
+         public static List<User> ReadAll()
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 return db.Query<User>("SELECT * FROM Users").ToList();
+            }
+        }
+
+        //------ReadId------//
+
+         public static User GetId(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.Query<User>("SELECT * FROM Users WHERE Id = @id", new { id }).FirstOrDefault();
             }
         }
     }
