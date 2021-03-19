@@ -162,7 +162,7 @@ namespace DapperHw
                     default:
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Delete");
+                        Console.WriteLine("Exit");
                         Console.ResetColor();
                         working = false;
                     }
