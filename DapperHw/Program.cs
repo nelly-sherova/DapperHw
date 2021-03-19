@@ -33,7 +33,7 @@ namespace DapperHw
 
         //------ReadAll------//
 
-         public static List<User> ReadAll()
+        public static List<User> ReadAll()
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -43,11 +43,22 @@ namespace DapperHw
 
         //------ReadId------//
 
-         public static User GetId(int id)
+        public static User GetId(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 return db.Query<User>("SELECT * FROM Users WHERE Id = @id", new { id }).FirstOrDefault();
+            }
+        }
+        
+        //------Update------//
+        
+        public static void Update(User user)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "UPDATE Users SET Name = @Name, Age = @Age, City = @City WHERE Id = @Id";
+                db.Execute(sqlQuery, user);
             }
         }
     }
