@@ -30,6 +30,16 @@ namespace DapperHw
                 db.Execute(sqlQuery, user);
             }
         }
+
+        //------ReadAll------//
+
+         public static List<User> Read()
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.Query<User>("SELECT * FROM Users").ToList();
+            }
+        }
     }
     class Program
     {
